@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 防抖
+        // 当持续触发事件时，一定时间段内没有再触发事件，事件处理函数才会执行一次，
+        // 如果设定的时间到来之前，又一次触发了事件，就重新开始延时
+        function debounce(fn, delay) {
+            let timer = null;
+            return function() {
+                if (timer) {
+                    clearTimeout(timer)
+                }
+                timer = setTimeout(fn, delay)
+            }
+        }
+        // 节流
+        // 当持续触发事件时，保证一定时间段内只调用一次事件处理函数
+
+        function throttle(fn, delay) {
+            let vaild = true
+            return function() {
+                if (!vaild) return false;
+                vaild = false;
+                setTimeout(()=> {
+                    fn();
+                    vaild = true
+                }, delay)
+            }
+        }
+    </script>
+</body>
+</html>

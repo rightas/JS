@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 给你一个 32 位的有符号整数 x ，返回将 x 中的数字部分反转后的结果。
+
+        // 如果反转后整数超过 32 位的有符号整数的范围 [−231,  231 − 1] ，就返回 0。
+
+        // 假设环境不允许存储 64 位整数（有符号或无符号）。
+
+        // 输入：x = 123
+        // 输出：321
+
+        // 输入：x = -123
+        // 输出：-321
+
+        // var reverse = function(x) { 
+        //     let result = 0;
+        //     while(x !== 0) {
+        //         result = result * 10 + x % 10;
+        //         x = x / 10 | 0;
+        //     }
+        //     return result === (result | 0) ? result : 0;
+        // }
+        // console.log(reverse(-123))
+
+
+        // 给你 n 个非负整数 a1，a2，...，an，每个数代表坐标中的一个点 (i, ai) 。
+        // 在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0) 。
+        // 找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。
+
+        // 输入：[1,8,6,2,5,4,8,3,7]
+        // 输出：49 
+        // 解释：图中垂直线代表输入数组 [1,8,6,2,5,4,8,3,7]。在此情况下，容器能够容纳水（表示为蓝色部分）的最大值为 49。
+
+        // var maxArea = function(height) {
+        //     let max = 0;
+        //     let left = 0, right = height.length - 1;
+        //     while(left< right) {
+        //         max = Math.max(max, ((right - left) * Math.min(height[left], height[right])))
+        //         if (height[left] <height[right]) leff++;
+        //         else right--;
+        //     }
+        //     return max;
+        // }
+
+
+        // 给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0
+        //  ？请你找出所有和为 0 且不重复的三元组。注意：答案中不可以包含重复的三元组。
+        // 输入：nums = [-1,0,1,2,-1,-4]
+        // 输出：[[-1,-1,2],[-1,0,1]]
+
+        // ar threeSum = function(nums) {
+        //     if (nums.length <3) return [];
+        //     nums.sort((a, b)=> a-b);
+        //     let  target = 0;
+        //     let arr = [];
+        //     for(let i = 0; i<nums.length; i++) {
+        //         if (nums[i]>target) return;
+        //         // 去重
+        //         if (i && nums[i] === nums[i-1]) continue;
+        //         let m = i + 1;
+        //         let r = nums.length - 1;
+        //         while(m<r) {
+        //             let sum = num[i] + num[m] + nums[r];
+        //             if (sum<target) {
+        //                 m++;
+        //                 continue;
+        //             } else if (sum> target) {
+        //                 r--;
+        //                 continue;
+        //             } else {
+        //                 arr.push([num[i], num[m], num[r]]);
+        //                 // 去重
+        //                 while(num[m] === nums[m+1]) m++;
+        //                 while(num[r] === nums[r-1]) r--;
+        //                 m++;
+        //                 r--;
+        //                 continue;
+        //             }
+        //         }
+        //     }
+        // }
+
+        // var letterCombinations = function(digits) {
+        //     if (!digits) return [];
+        //     let n = digits.length;
+        //     let obj = { 2: 'abc', 3: 'def', 4: 'ghi', 5: 'jkl', 6: 'mno', 7: 'pqrs', 8: 'tuv', 9: 'wxyz' };
+        //     let result = [];
+        //     dfs(0, '');
+        //     return  result;
+        //     function dfs(i, str) {
+        //         if (i >= n) {
+        //             result.push(str)
+        //             return
+        //         }
+        //         let digit = obj[digits[i]];
+        //         for(let s of digit) {
+        //            dfs(i+1, str + s)
+        //         }
+        //     }
+        // }
+
+        // var letterCombinations = function(digits) {
+        //     if(digits.length < 1) return [];
+        //     const m = {
+        //         2: ["a", "b", "c"],
+        //         3: ["d", "e", "f"],
+        //         4: ["g", "h", "i"],
+        //         5: ["j", "k", "l"],
+        //         6: ["m", "n", "o"],
+        //         7: ["p", "q", "r", "s"],
+        //         8: ["t", "u", "v"],
+        //         9: ["w", "x", "y", "z"],
+        //     };
+        //     let result = [""];
+        //     for(const d of digits) {
+        //         let temp = [];
+        //         for(const r of result) {
+        //             for(const w of m[d]) {
+        //                 temp.push(r + w);
+        //             }
+        //         }
+        //         result = temp;
+        //     }
+        //     return result;
+        // };
+        // letterCombinations("2345");
+
+
+        // 给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素，
+        // 并返回移除后数组的新长度。
+        // 不要使用额外的数组空间，你必须仅使用 O(1) 额外空间并 原地 修改输入数组。
+        // 元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。
+        var removeElement = function(nums, val) {
+            let num = 0;
+
+            let ans = 0;
+            for(const num of nums) {
+                if(num != val) {
+                    nums[ans] = num;
+                    console.log(num, '22222',  nums,ans )
+                    ans++;
+                }
+            }
+            return ans;
+         
+        };
+        console.log(removeElement([3,2,2,3,2,3,223,32,3,453,423,5,3,3423,43,3], 3))
+
+
+
+
+
+
+
+
+
+        
+
+
+ 
+
+    </script>
+</body>
+</html>

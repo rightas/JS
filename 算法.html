@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 这倒题目用双重for循环来做的话会超时。变量max记录每次找到的最大值。求面积的公式显而易见，
+        // 主要是指针的移动方向。
+
+        // 一开始left和right指针在最两侧，此时宽度最大。高低是较低的那条。然后考虑指针移动。
+        // 我的宽度是要不断缩小的。那么我应该是去移动我较小高度的那条边，才会有机率增加我的面积。
+        // 否则移动最高那条永远都是只会越小的。虽然移动较小那条边也有可能会变小。但是起码会有变大的概率。
+        // 所以指针移动的方向应该是缩小较小高度。
+        // var maxArea = function(height) {
+        //   let max = 0;
+        //   let left = 0, right = height.length - 1;
+        //   while(left <right) {
+        //       let res = Math.min(height[left], height[right]) * (right - left);
+        //       max = Math.max( max, res);
+        //       if (height[left] < height[right])left++; 
+        //       else right--;
+        //   }
+        //   return max;
+        // };
+        // console.log(maxArea([1,8,6,2,5,4,8,3,7]));
+
+
+        // var romanToInt = function(s) {
+        //     let nums = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1],
+        //         char = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I'];
+        //         let sum = 0;
+        //     for(let i = 0;i<s.length;i++) {
+        //         let b = char.indexOf(s[i] + s[i+1]);
+        //         let a = char.indexOf(s[i]);
+        //         if (b=== -1) {
+        //             if (a !== -1) {
+        //                 sum+=nums[a];
+        //                 console.log(sum, nums[a], '11111')
+        //             } 
+        //         } else {
+        //             sum+=nums[b];
+        //             i+=1;
+        //             console.log(sum, nums[b], '222222')
+        //         }
+          
+        //     }    
+        //     return sum;
+        // };
+        // console.log(romanToInt('MCMXCIV'));
+
+
+        // var intToRoman = function(num) {
+        //     let nums = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1],
+        //         char = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I'];
+        //     let result = '';
+        //     while(num> 0) {
+        //         if (num >= nums[0]) {
+        //             result+=char[0];
+        //             num-=nums[0];
+        //         } else {
+        //             nums.shift();
+        //             char.shift();
+        //         }
+        //     }
+        //     return result;    
+        // };
+        // console.log(intToRoman(199894));
+
+            /* 
+            1. 先通过 sort 方法原地升序
+            2. 进入loop 将sum = [ nums[left], nums[mid], nums[right] ]假设为由left、mid和right 分为代表集合中左边、中间和右边
+            3. 当 nums[l] > target 因为是升序 所以可以不用往后找了 直接break for循环
+            4. 当 索引不同 但是 值相同的时候 表示此时的nums[l]已经出现过了 需要去重 故 continue 循环
+            5. 定义 mid和right指针的初始值 mid为left + 1 right为最右nums.length - 1
+            6. 进入for循环下的 while 循环
+            7.  只要 mid < right 则while循环持续下去
+            8. 详细的看后面代码
+            */
+        var threeSum = function(nums) {
+           
+           if (nums.length<3) return [];
+           let target = 0;
+           nums.sort((a, b)=> a - b);
+           let arr = [];
+           for( let i = 0; i<nums.length -2; i++) {
+              if(nums[i] > 0) break;
+              if (i && nums[i] === nums[i-1]) continue;
+              let m = i+1, r = nums.length - 1;
+              while(m<r) {
+                  let sum = nums[i] + nums[m] + nums[r];
+                  if (sum< target) {
+                      m++;
+                      continue;
+                  } else if (sum > target) {
+                      r--;
+                      continue;
+                  } else {
+                      arr.push([nums[i], nums[m], nums[r]]);
+                      // 去重
+                      while(nums[m] === nums[m+1]) m++;
+                      while(nums[r] === nums[r-1]) m--;
+
+                      m++;
+                      r--;
+                      continue;
+                  }
+              }
+           }
+           return arr;
+        };
+        console.log(threeSum([-1,0,1,2,-1,-4]))
+
+    </script>
+</body>
+</html>

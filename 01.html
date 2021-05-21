@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+            // function Foo() {
+            //   this.a = 1;
+            //   Foo.a = 100;
+            //   console.log(this.a, Foo.a,'this', this)
+            //   return {
+            //     a: 4, 
+            //     b: 5
+            //   }
+            // }
+            // Foo.prototype.a = 6;
+            // Foo.prototype.b = 7;
+            // Foo.prototype.c = 8;
+            // const o = new Foo();
+            // console.log(o.a);
+            // console.log(o.b);
+            // console.log(o.c);
+            // console.log(o);
+            // console.log(Foo)
+
+
+            // 共有属性申明 私有方法申明
+            // 类相当于实例的原型， 所有在类中定义的方法， 都会被实例继承。
+            //  如果在一个方法前， 加上static关键字， 就表示该方法不会被实例继承， 
+            // 而是直接通过类来调用， 这就称为“ 静态方法”。
+            function Demo() {
+                Demo.a = function() {
+                    return 100;
+                }
+            }
+            Demo.prototype.a = function() {
+                return 12
+            };
+            Demo.a = function() {
+                    return 200;
+            }
+            console.log(Demo.a())  //22
+            let obj = new Demo()
+            console.log(Demo.a()) // 100
+            console.log(obj.a()) //12
+
+            
+            // class Foo {
+            //     constructor() {
+            //         this.a = 100
+            //     }
+            //     //  写法一
+            //     prop = 2
+            //         //  写法二
+            //     // static prop =  2
+            // }
+            // let  b = new Foo();
+            // console.log(Foo.prop, b.a)  // undefined
+            
+
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 递归使用
+        // 函数可以自己调用自己，称为递归调用。
+
+        // 函数递归的调用方法
+        // 1、首先去找临界值，无需计算获得的值。
+        // 2、找这一次和上一次的关系。
+        // 3、假设当前函数已经可以使用了，调用自身计算上一次的运行结果，再写出这次的运行结果。
+        // 注意：使用递归是必须有参数和return
+        // function factorial(n) {
+        //     if (n === 1) return 1;
+        //     return n * factorial(n-1)
+        // }
+        // console.log(factorial(5))
+        // 数组扁平化
+        // let arr = [[1,2,4,5,[2]], 3,24,54, [3,23,09,56], 7,4,5];
+        // function float(arr = [],  result = []) {
+        //     arr.forEach(el=> {
+        //         if (Array.isArray(el)) {
+        //            result =  result.concat(float(el, []))
+        //         } else {
+        //             result.push(el)
+        //         }
+        //     })
+        //     return result
+        // }
+        // console.log(float(arr))
+
+        var add = function (m) {
+ 
+            var temp = function (n) {
+                return add(m + n);
+            }
+
+            temp.toString = function () {
+                return m;
+            }
+
+            return temp;
+        };
+
+ 
+        add(1)(2)(3);
+        add(4);
+        console.log(add(1)(2)(3)); //10
+
+    </script>
+    
+</body>
+</html>
