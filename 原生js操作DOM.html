@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 判断元素上是否有某个属性 Ele.classList.contains('aaa') // 如果Ele上面有aaa属性返回true，否则返回false
+        // 遍历DOM 
+        // nodeType === 1元素 2属于 3 文本 
+        // 获取屏幕宽高
+        // 获取实际屏幕宽高
+        // const W  =  window.screen.width 
+        // const H  =  window.screen.height
+
+        // 获取浏览器宽高
+        // const W = window.outerWidth;
+        // const H = window.outerHeight;
+
+        // 获取当前窗口宽高（浏览器视口宽高）
+        // const W = window.innerWidth;
+        // const H = window.innerHeight;
+
+        // 获取元素布局宽高
+        // const W = element.offsetWidth;
+        // const H = element.offsetHeight;
+
+        // 获取滚动后被隐藏页面的宽高
+        // const H = document.documentElement.scrollTop;
+        // const W = document.documentElement.scrollLeft
+
+
+        // 事件 
+        // 右击事件
+        // Ele.oncontextmenu = function () {
+        //     console.log("oncontextmenu");
+        // };
+
+        // 浏览器事件
+        // window 事件指的是浏览器窗口本身而不是窗口内的文档对象。
+            // onload：当文档和资源加载完成后调用
+            // unload：当用户离开当前文档转而其他文档时调用
+            // resize：浏览器窗口改变
+            // beforeunload：关闭浏览器窗口之前触发的事件
+            // DOMContentLoaded：文档对象加载完成之后就触发的事件，无需等待样式、图片等资源
+            // readystatechange：document有 readyState 属性来描述 document 的 loading状态，readyState 
+            // 的改变会触发 readystatechange 事件
+            // document.readyState === 'complete' 页面已加载完毕 document.readyState === 'loading' 页面正在加载
+
+    </script>
+</body>
+</html>
