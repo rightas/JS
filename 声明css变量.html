@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        :root{
+            --div_bg: red;
+            --div_mg: 10px;
+            --div_hd: 150px;
+            
+        }
+        .box{
+            margin: var(--div_mg);
+            width: 100px;
+            /* height: 100px; */
+            height: calc(var(--div_hd));
+            background: var(--div_bg);
+        }
+    </style>
+</head>
+<body>
+    <div>var()第一个参数是要替换的自定义属性的名称。函数的可选第二个参数用作回退值</div>
+    <div>CSS 使用变量 申明 变量 --变量名</div>
+    <div>使用变量 要用var 函数</div>
+    <div>将它们放在:root中将确保所有选择器都可以访问这些变量。</div>
+    <div class="box"></div>
+</body>
+</html>
