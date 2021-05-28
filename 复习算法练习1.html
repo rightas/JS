@@ -205,25 +205,37 @@
         // 给你两个字符串 haystack 和 needle ，请你在 haystack 字符串中找出 needle 
         // 字符串出现的第一个位置（下标从 0 开始）。如果不存在，则返回  -1 。
 
-        var strStr = function(haystack, needle) {
-            if (needle === '') return 0;
-            let left = 0;
-            let right = 0;
-            while(left < haystack.length) {
-                if (haystack.charAt(left) === needle.charAt(right)) {
-                    right++
-                    if (right === needle.length)
-                    return left - right + 1
-                } else {
-                    left = left - right
-                    right = 0;
-                }
-                left++
-            }
-            return - 1
+        // var strStr = function(haystack, needle) {
+        //     if (needle === '') return 0;
+        //     let left = 0;
+        //     let right = 0;
+        //     while(left < haystack.length) {
+        //         if (haystack.charAt(left) === needle.charAt(right)) {
+        //             right++
+        //             if (right === needle.length)
+        //             return left - right + 1
+        //         } else {
+        //             left = left - right
+        //             right = 0;
+        //         }
+        //         left++
+        //     }
+        //     return - 1
       
-        };
+        // };
 
+        var deleteDuplicates = function(head) {
+            let j = 0;
+            for(let i = 0; i < head.length - 1; i++) {
+                if (head[i] === head[j] && i) {
+                    head.splice(i , 1)
+                } else {
+                    j++
+                }
+            }
+            return head
+        };
+        console.log(deleteDuplicates([1,1,2]))
 
 
         
