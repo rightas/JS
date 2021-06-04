@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 结合Promise A+规范，我们可以总结出Promise所具有的特征：
+            // Promise只有三种状态：pending、fulfilled、rejected；
+            // new Promise的时候，需要传入一个执行器executor，executor会立即执行；
+            // executor接收两个参数，分别是resolve、reject；
+            // 默认状态是pending，pending状态可以转为fulfilled状态或者rejected状态，
+            // 状态一旦变更，就不可改变；
+            // fulfilled状态必须有一个value来保存成功的结果；
+            // rejected状态必须有一个reason来保存失败的结果；
+            // Promise必须要有一个then方法，then方法接收两个参数，分别是成功后的回调onFulfilled、
+            //        失败后的回调onRejected；
+            // Promise成功后，将执行then方法的成功回调onFulfilled，并且value将作为成功后回调的参数；
+            // Promise失败后，将执行then方法的失败回调onRejected，并且reason将作为失败后回调的参数；
+
+            // 先实现一个简单的promise
+            const PENDING = 'pending';
+            const FULFILLED = 'fulfilled';
+            const REJECTED = 'rejected';
+
+            class Promise {    
+                constructor(execute) {
+                    this.status = PENDING
+                    this.value = undefined
+                    this.reson = undefined
+
+                    this.arr1 = [];
+                    this.arr2 = [];
+
+                    const resolve = data=> {
+                        this.status = FULFILLED
+                        this.value = data
+                        this.arr1.forEach(el=> el())
+                    }
+
+                    const rejcet = data=> {
+                        this.status = REJECTED
+                        this.reson = data
+                        this.arr2.forEach(el=> el())
+                    }
+
+                    try {
+                        execute(resolve, rejcet)
+                    } catch (error) {
+                        rejcet(error)
+                    }
+
+ 
+                }
+
+                then(a, b) {
+                    if (this.status === FULFILLED) {
+                        a(this.value)
+                    }
+                    if (this.status === REJECTED) {
+                        b(this.reson)
+                    }
+                    if (this.status === PENDING) {
+                        this.arr1.push(()=> {
+                            a(this.value)
+                        })
+                        this.arr2.push(()=> {
+                            b(this.value)
+                        })
+                    }
+                }
+
+            }
+
+            new Promise((resolve, reject) => {
+                setTimeout(()=> {
+                    resolve(2)
+                }, 1000)
+            }).then(data => {
+                console.log('sucees2', data)
+            },err=> {
+                console.log('err2', err)
+            })
+
+
+
+            
+    </script>
+</body>
+</html>

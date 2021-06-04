@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var permute = function(nums) {
+          var result = [];
+        //   回溯算法
+          const DFS = function(arr) {
+              if (arr.length === nums.length) {
+                  result.push(arr.slice())
+                  return
+              }
+          
+              for(let i = 0; i < nums.length; i++) {
+                  if (!arr.includes(nums[i])) {
+                      arr.push(nums[i])//2
+                      DFS(arr) 
+                      arr.pop() //   arr.pop(nums[i])
+                    
+                  }
+              }
+
+          }
+          DFS([])
+          return result
+
+        };
+        console.log(permute([1,2,3]))
+
+
+        var combinationSum = function(candidates, target) {
+            let result = [];
+            const dfs = function(start, arr, sum) { //start是当前选择的起点索引 temp是当前的集合 sum是当前求和
+             
+             if (sum>=target) {
+                if (sum === target) {
+                    result.push(arr.slice())  // temp的拷贝 加入解集
+                }
+                return   // 结束当前递归
+             }
+
+
+             for(let i = start; i< candidates.length; i++) { // 枚举当前可选的数，从start开始
+               arr.push(candidates[i]) // 选这个数
+               dfs(i, arr, sum + candidates[i]) // 基于此继续选择，传i，下一次就不会选到i左边的数
+               arr.pop() // 撤销选择，回到选择candidates[i]之前的状态，继续尝试选同层右边的数
+             }
+            }
+            dfs(0, [], 0) // 最开始可选的数是从第0项开始的，传入一个空集合，sum也为0
+            return result
+        };
+        console.log(combinationSum([2,3,6,7], 7))
+    </script>
+</body>
+</html>
