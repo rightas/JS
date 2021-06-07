@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 有效的 括号组合。
+    
+    解题思路
+    括号字符串的生成过程，其实可以看做是一棵树的展开过程。
+
+    由于有效括号字符串的第一个必须是 '('，所以第一次进行递归时，仅拼接 '('
+    其余递归时，不论是'('，还是')'，其下层的分支都有两种情况，'(' 和 ')'
+    这种方法生成的字符串肯定包含很多非法的括号，接下来的工作就是进行剪枝
+
+    首先，当 '(' 的数量 或 ')' 的数量大于 n 时，停止递归
+    在递归过程种，由于是先计算 '(' ，因此在整个递归过程种 '(' 的数量必定大于等于 ')' 的数量
+    当 '(' 和 ')' 的数量均等于 n 时，可以将该字符 push 到 res 中，然后停止递归；
+    由于传入 dfs 递归函数的是空字符串 ''，其是基本数据类型，每做一次递归，就相当于做一次复制操作，所以不需要回溯的过程
+
+   
+   <script>
+        // var generateParenthesis = function(n) {
+        //     const res = [];
+        //     let dfs = function(path, count1, count2) {
+        //         if (count1 > n || count2 > n) return
+        //         if (count2 > count1) return
+        //         if (count2 === n && count1 === n) return res.push(path);
+        //         console.log(count1, count2, path)
+        //         if (count1 === 0) {
+        //             dfs(path + '(', count1 + 1, count2)
+        //         } else {
+        //             dfs(path + '(', count1 + 1, count2)
+        //             dfs(path + ')', count1, count2 + 1)
+        //         }
+        //     }
+        //     dfs('', 0, 0)
+        //     return res
+        // };
+        // console.log(generateParenthesis(1)
+    
+    </script>
+</body>
+</html>
