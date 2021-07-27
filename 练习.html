@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var a  = [{idx: '1'}, {idx: '1-2-3'},{idx: '1-1'}, {idx: '3-2'}, {idx: '1-2-1'}, {idx: '3-3'}];
+    a.sort(function(a,b){
+      if (a.idx>=b.idx) return 1
+      else return -1
+    })
+    console.log(a)
+  </script> 
+</body>
+</html>

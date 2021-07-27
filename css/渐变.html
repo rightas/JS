@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .div1{
+      width: 200px;
+      height: 100px;
+      /* background: linear-gradient(#000000, #ffffff); */
+      background: linear-gradient(yellow 10% ,red 10% ,blue 80% ); 
+    }
+    .gradient{
+      width: 200px;
+      height: 200px;
+      background: linear-gradient(45deg, transparent 50%, white 50%),linear-gradient(135deg, white 50%,rgba(0, 0, 0, 0.774) 62%,white 62%,white 69%,rgba(255, 166, 0) 69%,rgba(182, 25, 51) 81%,#fff 81%,#fff 88%,rgb(89, 176, 247) 88%,rgb(170, 12, 190) 100%);
+    }
+    .top{
+      width: 200px;
+      height: 100px;
+      border-radius: 100px 100px 0 0;
+      overflow: hidden;
+    }
+    .top > .sugar{
+      width: 200px;
+      height: 200px;
+      border-radius: 100px;
+      background: 
+      linear-gradient(-1600deg,transparent 50%,blue 50%,blue 100%),
+      linear-gradient(-120deg,transparent 50%,cyan 50%,cyan 100%),
+      linear-gradient(-90deg,transparent 50%,green 50%,green 100%),
+      linear-gradient(-60deg,transparent 50%,yellow 50%,yellow 100%),
+      linear-gradient(-30deg,transparent 50%,orange 50%,orange 100%),
+      linear-gradient(-180deg,red 0%,red 100%);
+    }
+
+    .bottom{
+      width: 200px;
+      height: 100px;
+      overflow: hidden;
+      transform: rotate(180deg);
+    }
+    .bottom > .sugar{
+        width: 200px;
+        height: 200px;
+        border-radius: 100px;
+        background: 
+        linear-gradient(-1600deg,transparent 50%,blue 50%,blue 100%),
+        linear-gradient(-120deg,transparent 50%,cyan 50%,cyan 100%),
+        linear-gradient(-90deg,transparent 50%,green 50%,green 100%),
+        linear-gradient(-60deg,transparent 50%,yellow 50%,yellow 100%),
+        linear-gradient(-30deg,transparent 50%,orange 50%,orange 100%),
+        linear-gradient(-180deg,red 0%,red 100%);
+      }
+
+  </style>
+</head>
+<body>
+  <h1>
+    相对外部图片，渐变的优点有：
+  </h1>
+  <p>
+    通过代码实现，无需额外的带宽消耗
+    更好维护，由于是代码实现UI效果，修改也比较方便
+    由于是代码实现，无需担心图像的质量降损（模糊等问题）
+  </p>
+  </br>
+  <h1>
+    线性渐变有三个重要的概念：
+  </h1>
+  <p>
+    渐变方向，下图用蓝色粗线表示。可以通过角度或者关键字设定
+    渐变的端点（起点和终点）末端切线与渐变方向的交点，下图红色圆圈标记
+    颜色位置点。端点内的任何位置。可以用像素表示位置点，也可以用百分比表示。两个位置点之间的部分会自动进行颜色插值，即颜色的过渡或渐变
+  </p>
+  </br>
+  <h1>
+    第一部分指定渐变方向：
+  </h1>
+  <p>
+    to left表示从左到右
+    to right表示从右到左
+    to right bottom表示从左上角到右下角（对角线）
+  </p>
+  </br>
+  <h1>
+    第二部分指定了单色位置停留点，可以有多个颜色段。
+  </h1>
+  <h2>
+    对于某个颜色区段，只有两头颜色不相同且长度不为0时才会发生渐变
+  </h2>
+  <p>
+    yellow 0%。不会发生渐变，只有一个颜色
+    yellow 0%,white 0%。不会发生渐变，长度为0
+    yellow 10% ,red 10% ,blue 80%。在10%到80%之间发生红色到蓝色的渐变。左边为纯黄色，右边为纯蓝色.
+  </p>
+  </br>
+
+  <h2>
+    径向渐变
+  </h2>
+  <p>
+    径向渐变也有几个重要概念：
+    曲线类型，有圆形和椭圆形两种（circle,ellipse）
+    边缘曲线（ending shape）。
+    虚拟渐变射线(virtual gradient ray)
+    颜色位置点
+  </p>
+  <p>
+    其中的size的四个关键字：
+    closest-side，使边缘形状刚好与离渐变中心最近的边相遇的尺寸
+    farthest-side，使边缘形状刚好与离渐变中心最远的边相遇的尺寸
+    closest-corner，使边缘形状刚好与离渐变中心最近的角相遇的尺寸
+    farthest-corner，使边缘形状刚好与离渐变中心最远的角相遇的尺寸
+  </p>
+  </br>
+
+ 
+
+
+  <div class="div1"></div>
+  <div class="gradient"></div>
+  <!-- 棒棒糖 -->
+  <div class="container">
+      <div class="top">
+          <div class="sugar"></div>
+      </div>
+      <div class="bottom">
+          <div class="sugar"></div>
+      </div>
+  </div>
+
+  
+</body>
+</html>

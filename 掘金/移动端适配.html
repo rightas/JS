@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>移动端适配方案 - rem</div>
+  <p>rem：</p>
+  <p>
+    <span>
+      它的全称是 font size of the root element （根元素的字体大小）,
+    </span>
+    <span>
+      它是CSS3中新增加的一个尺寸（度量）单位，根节点（html）的font-size决定了rem的尺寸，也就是说它是一个相对单位，相对于(html)。
+    </span>
+    <span>
+      浏览器的默认的font-size是16px，1rem默认就等于16px。（chrome最小字体为12px）
+    </span>
+  </p>
+  <p>1: 通过webpack 配置实现</p>
+  <p>安装：cnpm i lib-flexible -S 和 cnpm i px2rem-loader -D</p>
+  <li>配置loader，在打包时自动将px转换成rem</li>
+  <code>
+    plugins: [
+    // 处理less文件
+        {
+            test: /.less$/,
+            use: [
+                // 省略其他loader
+                ……
+                // 将px转换成rem
+                {
+                    loader: 'px2rem-loader',
+                    options: {
+                        remUnit: 75,  // 对应比例，750px设计稿
+                        remPrecision: 8  // 转换成rem时保留的小数位
+                    }
+                }
+            ]
+          },
+    ]
+  </code>
+  <li>2: 通过JS方式实现</li>
+  <p>
+    const oHtml = document.getElementsByTagName('html')[0]
+    const width = oHtml.clientWidth;
+    // 320px的屏幕基准像素为12px
+    oHtml.style.fontSize = 12 * (width / 320) + "px";
+    /*
+     这样iphone8（375px）下html的font-size 就是14.0625px，iphone8p下font-size就是15.525px。
+    */
+  </p>
+</body>
+</html>

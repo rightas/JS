@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h2></h2>
+  <script>
+    // watch更新
+    // 异步更新
+    // 异步更新
+    // 本文的重头戏来了。Vue中，所有的DOM更新都是异步更新，
+    // 本文的重头戏来了。Vue中，所有的DOM更新都是异步更新，
+    // 这是因为DOM更新是renderWatcher的callbak来调用的，而renderWacther是一个异步更新watcher。
+    // 每当用户修改了组件状态，dep都会通知相关watcher，而这些watcher会调用名为queueWatcher的方法
+    // 将自己放进更新队列。这里所谓的更新队列是一个由watcher组成的数组，Vue会在更新循环中遍历这个数组并依次调用其中每个watcher的callback。
+    // 不过这里要注意：在一个更新循环内，同一个watcher在一般情况下只会被push到更新队列中一次。Vue使用异步更新的目的就是去除重复的DOM更新，比如下面这个代码：
+        // methods: {
+        // setName() {
+        //   this.myName="a";
+        //   this.myName="b";
+        //   this.myName="c";
+        // }}
+    // 实际上，在一般情况下renderWatch只会执行一次，最终myName的值为c。
+    // 我不断的提示一般情况下是因为Vue的异步更新逻辑远远没文档中描述的这么简单，实际上Vue处理了很多边界情况。下面贴上Vue源码，我们一点点分析。 
+
+    // 异步更新的源码分析 
+    // 源码位于 src\core\observer\scheduler.js文件中，其中最重要的两个函数为flushSchedulerQueue和queueWatcher。除此之外，每个watcher都有一个唯一的id，
+    // 而has数组被用来保存当前更新循环中全部的watcher.id。上文提到的更新队列指的是源码中的queue数组。
+    // 链接 https://blog.csdn.net/ajh99990/article/details/100355011
+
+
+    // 1#computed：计算属性将被混入到 Vue 实例中。所有 getter 和 setter 的 this 上下文自动地绑定为 Vue 实例。
+    // 2#methods：methods 将被混入到 Vue 实例中。可以直接通过 VM 实例访问这些方法，或者在指令表达式中使用。方法中的 this 自动绑定为 Vue 实例。
+    // 3#watch：是一种更通用的方式来观察和响应 Vue 实例上的数据变动。一个对象，键是需要观察的表达式，值是对应回调函数。值也可以是方法名，或者包含选项的对象。
+    //          Vue 实例将会在实例化时调用 $watch()，遍历 watch 对象的每一个属性。
+    // 通俗来讲，
+    // computed是在HTML DOM加载后马上执行的，如赋值；
+    // 而methods则必须要有一定的触发条件才能执行，如点击事件；
+    // watch呢？它用于观察Vue实例上的数据变动。对应一个对象，键是观察表达式，值是对应回调。值也可以是方法名，或者是对象，包含选项。
+    // 所以他们的执行顺序为：默认加载的时候先computed再watch，不执行methods；等触发某一事件后，则是：先methods再watch。
+
+  </script>
+</body>
+</html>
