@@ -9,6 +9,33 @@
 <body>
     <button onclick="btnClick()">ssss</button>
     <script>
+      
+
+
+       this.treeArr.map((item) => {
+            if (item.path === a.path) {
+              item.nodes = res.data.nodes
+            }
+            if (item.nodes.length) {
+              item.nodes.map((it) => {
+                if (it.path === a.path) {
+                  it.nodes === res.data.nodes
+                }
+                if (it.nodes.length) {
+                    // ....
+                    // 如此循环往复 判断子集是否存在 有则一直如此
+                }
+              })
+            }
+          })
+
+ 
+ 
+
+
+          
+
+
         // function btnClick() {
         //     console.log(222, wx)
         //     wx.miniProgram.getEnv(function (res) {
